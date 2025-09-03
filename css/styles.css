@@ -1,0 +1,751 @@
+/* Custom properties */
+:root {
+    --bg-dark: #121212;
+    --text-light: #e0e0e0;
+    --accent-color: #56dc66;
+}
+
+/* General styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+    
+}
+
+/* Hero Section */
+#home {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hero-img {
+    width: 100%;
+    height: 100vh;
+    
+    object-fit: cover;
+}
+    
+
+.decorated-word {
+    color: var(--accent-color);
+    font-weight: 700;
+    position: relative;
+}
+
+.decorated-word::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    bottom: -4px;
+    left: 0;
+    background: var(--accent-color);
+    border-radius: 2px;
+    opacity: 0.6;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.decorated-word:hover::after {
+    transform: scaleX(1);
+}
+
+/* Estilo del contenedor principal para que parezca un teléfono */
+.phone-screen {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: 90vh; /* Aumentado a 90vh para hacerlo más largo */
+    padding-top: 60px;
+    padding-bottom: 70px; /* Espacio para la barra de navegación inferior */
+    border: 8px solid #222;
+    border-radius: 40px;
+    background-color: #1a1a1a;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    transition: opacity 0.5s ease;
+    overflow: hidden;
+    color: #fff;
+    z-index: 10;
+}
+
+/* Nuevo fondo de pantalla */
+.phone-wallpaper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(86, 220, 102, 0.8) 0%, rgba(255, 107, 107, 0.8) 25%, rgba(29, 209, 161, 0.8) 50%, rgba(255, 196, 79, 0.8) 75%, rgba(75, 123, 236, 0.8) 100%);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+    z-index: 1;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Título de la pantalla del celular */
+.phone-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+    z-index: 2;
+}
+
+/* Estilos de la barra de estado superior */
+.phone-status-bar {
+    width: 100%;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    padding: 0 20px;
+    z-index: 10;
+}
+
+/* Estilos del notch (muesca) */
+.notch {
+    width: 120px;
+    height: 30px;
+    background-color: #000;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    z-index: 10;
+}
+
+/* Contenedor de las aplicaciones */
+.app-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+    z-index: 2;
+}
+
+/* Estilo para el enlace del ícono de la aplicación */
+.app-icon-link {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70px;
+    transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
+    z-index: 3;
+}
+
+.app-icon-link:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+/* Estilo del ícono de la aplicación */
+.app-icon {
+    width: 70px;
+    height: 70px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.app-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Texto del ícono */
+.app-icon-link p {
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text-light);
+    margin-top: 5px;
+}
+
+/* Estilos para el reproductor de música */
+.music-player {
+    width: 90%;
+    max-width: 300px;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 15px;
+    position: absolute;
+    bottom: 80px; /* Ajuste para dejar espacio a la barra de navegación inferior */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 5;
+}
+
+.album-cover img {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+}
+
+.music-details {
+    flex-grow: 1;
+}
+
+.song-title {
+    font-weight: bold;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.artist-name {
+    font-size: 0.8rem;
+    color: #bbb;
+    margin: 0;
+}
+
+.music-controls {
+    display: flex;
+    gap: 15px;
+    font-size: 1.2rem;
+    color: #ccc;
+}
+
+.music-controls i {
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.music-controls i:hover {
+    color: var(--accent-color);
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+    border-radius: 2px;
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+    transition: width 0.1s linear;
+}
+
+/* --- PHONE SLIDING FUNCTIONALITY --- */
+.phone-content-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow-y: auto;
+    z-index: 3;
+}
+
+.phone-page {
+    width: 100%;
+    flex-shrink: 0;
+    padding: 1.5rem;
+    padding-bottom: 120px;
+    overflow-y: auto;
+}
+
+/* BARRA DE NAVEGACIÓN INFERIOR */
+.phone-navigation {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #2c2c2e;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid #444;
+    z-index: 5;
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    color: #8e8e93;
+    text-align: center;
+    cursor: pointer;
+    font-size: 10px;
+    transition: color 0.3s ease;
+    z-index: 6;
+}
+
+.nav-button:hover,
+.nav-button.active {
+    color: #fff;
+}
+
+.nav-button i {
+    font-size: 20px;
+}
+
+.nav-button span {
+    display: block;
+    margin-top: 4px;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 991px) {
+    .hero-img-wrapper,
+    #mobileScreen {
+        display: none !important;
+    }
+}
+
+/* SCROLLBAR */
+.phone-page::-webkit-scrollbar {
+    width: 1px;
+}
+
+.phone-page::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.phone-page::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color);
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.phone-page::-webkit-scrollbar-thumb:hover {
+    background-color: #44b452;
+}
+
+/* Modal styles */
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.modal-overlay.visible {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: #2c2c2e;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    width: 90%;
+    max-height: 85%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s ease-in-out;
+}
+
+.modal-overlay.visible .modal-content {
+    transform: translateY(0);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #444;
+}
+
+.modal-title {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.close-modal-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.modal-body {
+    padding: 15px;
+    overflow-y: auto;
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 10px;
+}
+
+.gallery-img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Notas App Styles */
+#noteInput {
+    width: 100%;
+    min-height: 150px;
+    padding: 15px;
+    border: 1px solid #555;
+    border-radius: 10px;
+    background-color: #333;
+    color: #eee;
+    resize: vertical;
+}
+
+.note-item {
+    background-color: #444;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    position: relative;
+    word-wrap: break-word;
+}
+
+.note-item .delete-note-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    color: #f00;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+/* Custom properties and general styles remain the same */
+
+/* --- Hero Section --- */
+#home {
+    min-height: 100vh;
+    padding-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    transition: filter 0.5s ease;
+}
+
+.hero-img-wrapper {
+    height: 100%;
+}
+
+/* --- Teléfono y Contenido Alternativo (Responsive) --- */
+
+/* Por defecto, en móviles, la imagen de Renzo y el teléfono están ocultos */
+.hero-img-wrapper {
+    display: none;
+}
+
+#mobileScreen {
+    width: 100%;
+    max-width: 400px;
+    height: 90vh;
+    display: flex;
+}
+
+/* Media query para pantallas grandes (desktops) */
+@media (min-width: 992px) {
+    .hero-img-wrapper {
+        display: flex !important; /* Muestra la imagen de Renzo */
+        padding-right: 1rem; /* Opcional: añade espacio entre las columnas */
+    }
+
+    #mobileScreen {
+        display: flex !important; /* Muestra el simulador de teléfono */
+        /* Ajusta el tamaño del teléfono para que se vea bien en desktop */
+        height: 90vh; 
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 0, 0, 0.2);
+    }
+}
+
+/*
+Si deseas un contenido alternativo para móviles, deberás crear una nueva sección en tu HTML
+y ocultarla en desktop.
+*/
+
+/* Aquí el CSS para ocultar el teléfono en móviles (esto ya lo tienes) */
+@media (max-width: 991px) {
+    #mobileScreen {
+        display: none !important;
+    }
+}
+
+/* Por defecto mostramos TODO */
+.hero-img-wrapper {
+    display: flex;
+}
+#mobileScreen {
+    display: flex;
+}
+
+/* En pantallas pequeñas, ocultamos SOLO la imagen */
+@media (max-width: 991px) {
+    .hero-img-wrapper {
+        display: none !important; /* Oculta la imagen */
+    }
+    #mobileScreen {
+        display: flex !important; /* Mantiene visible el celular */
+    }
+}
+/* Añade esto a tu archivo styles.css */
+
+#background-blobs {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden; /* Oculta cualquier mancha que se salga de los bordes */
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%; /* Para que las manchas sean circulares */
+    opacity: 0.6; /* Hacemos que sean un poco transparentes */
+    filter: blur(80px); /* Un desenfoque para que se vean como manchas de acuarela */
+    animation: floating 20s infinite ease-in-out; /* Animación de movimiento */
+}
+
+/* Animación para que las manchas se muevan */
+@keyframes floating {
+    0% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(20vw, -10vh) scale(1.1); }
+    50% { transform: translate(0, 20vh) scale(0.9); }
+    75% { transform: translate(-20vw, -10vh) scale(1.2); }
+    100% { transform: translate(0, 0) scale(1); }
+}
+/* Añade esto a tu archivo styles.css */
+
+.hello-text-container {
+    position: absolute; /* Posicionamiento para colocar el texto en un lugar específico */
+    top: 50%;
+    left: 44%;
+    transform: translate(-50%, -50%); /* Centra el texto */
+    z-index: -2; /* Para que quede detrás de tu teléfono pero encima de las manchas */
+}
+
+.hello-text-container h1 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 4rem; /* Puedes ajustar el tamaño */
+    text-align: center;
+    text-transform: uppercase;
+    
+    /* Efecto de acuarela */
+    background-image: linear-gradient(45deg, #ff6347, #ffb833, #47c2ff, #50ff60); /* Degradado de colores */
+    -webkit-background-clip: text; /* Recorta el fondo al área del texto */
+    -webkit-text-fill-color: transparent; /* Hace el texto transparente para que el fondo se muestre a través */
+    mix-blend-mode: multiply; /* Mezcla los colores del texto con el fondo */
+    
+    /* Animación del texto */
+    animation: fade-in 3s ease-out forwards;
+}
+
+/* --- Proyector de Pantalla (Lock Screen) --- */
+
+/* Estilo del overlay que actúa como protector de pantalla */
+.lock-screen-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque del fondo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 15; /* Asegura que esté por encima de todo el contenido del teléfono */
+}
+
+/* Clase para ocultar el proyector de pantalla */
+.lock-screen-overlay.hidden {
+    opacity: 0;
+    pointer-events: none; /* Deshabilita los clics en la capa oculta */
+}
+
+/* Estilo y animación para el texto "Click me to unlock!" */
+#unlockSpan {
+    animation: pulse-animation 2s infinite; /* Aplica la animación de pulso */
+    cursor: pointer;
+    display: inline-block;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Sombra para el texto */
+}
+
+/* Animación de pulso */
+@keyframes pulse-animation {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+}
+
+
+/* Animación para que el texto aparezca de forma gradual */
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ocultar el texto en pantallas pequeñas (teléfonos) */
+@media (max-width: 767px) {
+    .hello-text-container {
+        display: none !important;
+    }
+}
+
+/* Nuevo estilo para la notificación de pop-up */
+.notification-popup {
+    position: fixed;
+    bottom: 80px; /* Ajusta la posición para que no choque con la barra de navegación */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #2c2c2c;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 250px;
+    text-align: center;
+}
+
+.notification-popup.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-20px);
+}
+/* Estilos para el contenedor del botón (para que el badge se posicione correctamente) */
+.nav-button {
+    position: relative; /* Esencial para que el badge se posicione respecto a este botón */
+}
+
+
+
+/* Notificaciones en la parte superior del viewport */
+.top-notification-container {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 400px;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo negro semitransparente */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque, como en iOS */
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    text-align: center;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1050;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.top-notification-container.show {
+    opacity: 1;
+    visibility: visible;
+    top: 0;
+}
+
+.top-notification-message {
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+/* Custom CSS for the new section */
+.new-section-title {
+    font-family: 'Permanent Marker', sans-serif;
+    font-size: 3rem;
+    color: var(--text-color); /* Usar la variable de color de texto */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.new-section-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.25rem;
+    max-width: 800px;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.8);
+}
