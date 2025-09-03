@@ -460,7 +460,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Llama a la función para mostrar la notificación apenas carga el DOM
-    showNotification('Hello, welcome to my portfolio! 💚');
+    showNotification('🔔 Hello, welcome to my portfolio! 💚');
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -501,10 +501,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, duration);
     }
 
-    // Ejemplo de uso:
-    // Llama a esta función cuando quieras que aparezca la notificación.
-    // Puedes vincularla a un evento, como un clic de botón.
-    // Por ahora, la mostramos automáticamente al cargar la página.
     showTopNotification(' 🔔 Hello, welcome to my portfolio! 💚');
 });
 
