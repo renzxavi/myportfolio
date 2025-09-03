@@ -11,7 +11,6 @@ body {
     background-color: var(--bg-dark);
     color: var(--text-light);
     line-height: 1.6;
-    
 }
 
 /* Hero Section */
@@ -21,13 +20,14 @@ body {
     align-items: center;
     justify-content: center;
 }
-.hero-img {
+
+.section-divider {
     width: 100%;
-    height: 100vh;
-    
-    object-fit: cover;
+    height: 10px; /* grosor de la línea */
+    background: linear-gradient(to right, rgba(0,255,100,0.8), rgba(0,255,100,0.4), rgba(0,255,100,0.8));
+    filter: blur(4px); /* efecto glow */
+    margin: 0; /* sin espacio extra */
 }
-    
 
 .decorated-word {
     color: var(--accent-color);
@@ -697,8 +697,6 @@ y ocultarla en desktop.
     position: relative; /* Esencial para que el badge se posicione respecto a este botón */
 }
 
-
-
 /* Notificaciones en la parte superior del viewport */
 .top-notification-container {
     position: fixed;
@@ -734,12 +732,18 @@ y ocultarla en desktop.
     margin: 0;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
+
 /* Custom CSS for the new section */
 .new-section-title {
-    font-family: 'Permanent Marker', sans-serif;
-    font-size: 3rem;
-    color: var(--text-color); /* Usar la variable de color de texto */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Permanent Marker', cursive;
+    font-size: 4rem;
+    text-align: center;
+    text-transform: uppercase;
+    background-image: linear-gradient(45deg, #ff6347, #ffb833, #47c2ff, #50ff60);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    mix-blend-mode: multiply;
+    animation: fade-in 3s ease-out forwards;
 }
 
 .new-section-text {
@@ -748,4 +752,55 @@ y ocultarla en desktop.
     max-width: 800px;
     margin: 0 auto;
     color: rgba(255, 255, 255, 0.8);
+}
+
+.alert-message {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    z-index: 1000;
+    transition: opacity 0.5s ease;
+}
+
+.alert-message.show {
+    display: block;
+    opacity: 1;
+}
+
+.alert-message.success {
+    background-color: #28a745;
+}
+
+.alert-message.error {
+    background-color: #dc3545;
+}
+
+.nav-button {
+    position: relative;
+    cursor: pointer;
+}
+
+/* Puntito de notificación que titila */
+.nav-button .notification-dot {
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+    animation: blink 1s infinite;
+}
+
+/* Animación de titileo */
+@keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
 }

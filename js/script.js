@@ -243,7 +243,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Función para mostrar una notificación y reproducir un sonido
     function showNotification(message) {
-        const audio = new Audio('assets/sound/notification.mp3');
         audio.play().catch(error => console.log("Error al reproducir el sonido:", error));
 
         const notificationItem = document.createElement('div');
@@ -412,16 +411,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Lógica de inicialización ---
     function initializeMobileScreen() {
-        if (window.innerWidth >= 992) {
-            body.classList.remove('off');
-            body.classList.add('on');
-            heroImg.style.filter = 'brightness(50%)';
-            mobileScreen.classList.remove('d-none');
-            mobileScreen.classList.add('d-flex');
-        } else {
-            mobileScreen.classList.add('d-none');
-        }
+    if (window.innerWidth < 992) {  // para pantallas pequeñas
+        mobileScreen.classList.remove('d-none');
+        mobileScreen.classList.add('d-flex');
+        body.classList.add('off'); // opcional, si quieres oscurecer fondo
+        heroImg.style.filter = 'brightness(50%)';
+    } else { // desktop
+        mobileScreen.classList.add('d-none');
+        body.classList.remove('off');
+        heroImg.style.filter = 'brightness(100%)';
     }
+}
+
 
     initializeMobileScreen();
     window.addEventListener('resize', initializeMobileScreen);
