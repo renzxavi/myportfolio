@@ -1,0 +1,16 @@
+/* Animación de la hero image */
+.hero-img-lluvia,
+.hero-img-sol {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 2s ease-in-out;
+}
+
+.hero-img-sol {
+    opacity: 0;
+}
+
+.hero-img-lluvia.fade-out {
+    opacity: 0;
+}
