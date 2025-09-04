@@ -609,41 +609,6 @@ body {
     transform: translateX(-50%) translateY(-20px);
 }
 
-/* Notificaciones en la parte superior del viewport */
-.top-notification-container {
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 400px;
-    padding: 15px;
-    background-color: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    color: white;
-    text-align: center;
-    border-radius: 0 0 10px 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    z-index: 1050;
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    transition: all 0.5s ease-in-out;
-    opacity: 0;
-    visibility: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.top-notification-container.show {
-    opacity: 1;
-    visibility: visible;
-    top: 0;
-}
-
-.top-notification-message {
-    margin: 0;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
 
 
 .decorated-word {

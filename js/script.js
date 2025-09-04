@@ -98,7 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // --- Lógica general de modales ---
-
   function hideAllModals() {
     const modals = document.querySelectorAll('.modal-overlay');
     modals.forEach(modal => {
@@ -107,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Manejar la navegación de los botones inferiores
   navButtons.forEach(button => {
     button.addEventListener('click', () => {
       const target = button.dataset.target;
@@ -262,7 +260,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Esta función muestra el mensaje de alerta
   function showStatusMessage(message, type) {
     statusMessage.textContent = message;
     statusMessage.className = `alert-message show ${type}`;
@@ -272,7 +269,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3000);
   }
 
-  // Este evento maneja el envío del formulario
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const formData = new FormData(contactForm);
@@ -379,7 +375,6 @@ document.addEventListener('DOMContentLoaded', () => {
   closeMdnModalBtn.addEventListener('click', () => {
     mdnModal.classList.remove('visible');
     mdnModal.style.display = 'none';
-    // Opcional: Volver al modal principal de 'My Study'
     studyModal.style.display = 'flex';
     studyModal.classList.add('visible');
   });
@@ -434,7 +429,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Cuando el usuario hace click, desaparece
   notificationsBtn.addEventListener('click', () => {
     notificationDot.style.display = 'none';
   });
@@ -452,12 +446,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Lógica de inicialización ---
   function initializeMobileScreen() {
-    if (window.innerWidth < 992) { // para pantallas pequeñas
+    if (window.innerWidth < 992) {
       mobileScreen.classList.remove('d-none');
       mobileScreen.classList.add('d-flex');
-      body.classList.add('off'); // opcional, si quieres oscurecer fondo
+      body.classList.add('off');
       heroImg.style.filter = 'brightness(50%)';
-    } else { // desktop
+    } else {
       mobileScreen.classList.add('d-none');
       body.classList.remove('off');
       heroImg.style.filter = 'brightness(100%)';
@@ -501,71 +495,20 @@ document.addEventListener('DOMContentLoaded', () => {
     backgroundBlobs.appendChild(blob);
   }
 
-  // Llama a la función para mostrar la notificación apenas carga el DOM
-  showNotification('🔔 Hello, welcome to my portfolio! 💚');
-
-  // --- Lógica de las notificaciones en la parte superior ---
-  // Función para crear y mostrar la notificación en la parte superior
-  function showTopNotification(message, duration = 3000) {
-    // Crear el elemento del contenedor
-    const notificationContainer = document.createElement('div');
-    notificationContainer.className = 'top-notification-container';
-
-    // Crear el mensaje
-    const notificationMessage = document.createElement('p');
-    notificationMessage.className = 'top-notification-message';
-    notificationMessage.textContent = message;
-
-    // Anidar el mensaje al contenedor
-    notificationContainer.appendChild(notificationMessage);
-
-    // Añadir el contenedor al cuerpo del documento
-    document.body.appendChild(notificationContainer);
-
-    // Forzar un reflow para asegurar que la transición funcione
-    void notificationContainer.offsetWidth;
-
-    // Mostrar la notificación con un pequeño retraso
-    setTimeout(() => {
-      notificationContainer.classList.add('show');
-    }, 10);
-
-    // Ocultar la notificación automáticamente después de la duración especificada
-    setTimeout(() => {
-      notificationContainer.classList.remove('show');
-
-      // Eliminar el elemento del DOM después de la transición
-      setTimeout(() => {
-        notificationContainer.remove();
-      }, 500); // Coincide con la duración de la transición en CSS
-    }, duration);
-  }
-
-  // Obtén el ancho de la ventana del navegador
-  const windowWidth = window.innerWidth;
-
-  // Define un punto de quiebre (breakpoint) para dispositivos móviles, por ejemplo, 768px
-  const mobileBreakpoint = 768;
-
-  // Si el ancho de la ventana es mayor que el punto de quiebre, muestra la notificación
-  if (windowWidth > mobileBreakpoint) {
-    showTopNotification(' 🔔 Hello, welcome to my portfolio! 💚');
-  }
-
   // --- Lógica de la aplicación 'Elusive' ---
   const elusiveApp = document.getElementById('elusiveApp');
-  const appText = elusiveApp.querySelector('p');
-
-  const funnyNames = [
-    "Made in Temu",
-    "Shipping in 99 days",
-    "Manual in Chinese",
-  ];
 
   if (elusiveApp) {
+    const appText = elusiveApp.querySelector('p');
+
+    const funnyNames = [
+      "Made in Temu",
+      "Shipping in 99 days",
+      "Manual in Chinese",
+    ];
+
     elusiveApp.addEventListener('click', (event) => {
       event.preventDefault();
-
       elusiveApp.classList.add('shake-animation');
 
       const randomIndex = Math.floor(Math.random() * funnyNames.length);
