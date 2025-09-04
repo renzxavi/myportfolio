@@ -520,3 +520,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const bocetoElements = [
+        document.querySelector('.nav-bar'),
+        document.querySelector('.header'),
+        document.querySelector('.content-row'),
+        document.querySelector('.footer')
+    ];
+
+    let delay = 2000; // 2-second initial delay
+
+    bocetoElements.forEach((element) => {
+        setTimeout(() => {
+            element.classList.add('draw-animation');
+        }, delay);
+        delay += 500; // Increment delay for a sequenced effect
+    });
+});
