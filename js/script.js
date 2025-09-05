@@ -82,13 +82,17 @@ document.addEventListener('DOMContentLoaded', () => {
     forwardTrack();
   });
 
-  playPauseBtn.addEventListener('click', () => {
-    if (audio.paused) {
-      playMusic();
-    } else {
-      pauseMusic();
-    }
-  });
+ playPauseBtn.addEventListener('click', () => {
+  // efecto visual verde temporal
+  playPauseBtn.classList.add('active');
+  setTimeout(() => playPauseBtn.classList.remove('active'), 400);
+
+  if (audio.paused) {
+    playMusic();
+  } else {
+    pauseMusic();
+  }
+});
 
   backwardBtn.addEventListener('click', () => {
     backwardTrack();

@@ -1041,3 +1041,12 @@ body {
         overflow-y: auto;
     }
 }
+
+#playPauseBtn {
+  color: white; /* color por defecto */
+  transition: color 0.3s ease;
+}
+
+#playPauseBtn.active {
+  color: limegreen; /* verde cuando se hace click */
+}
