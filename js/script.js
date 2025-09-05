@@ -261,38 +261,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  function showStatusMessage(message, type) {
-    statusMessage.textContent = message;
-    statusMessage.className = `alert-message show ${type}`;
-    setTimeout(() => {
-      statusMessage.classList.remove('show');
-      statusMessage.classList.add('hide');
-    }, 3000);
-  }
-
-  contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const formData = new FormData(contactForm);
-
-    fetch('save_contact.php', {
-      method: 'POST',
-      body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.status === 'success') {
-        showStatusMessage('Successfully!', 'success');
-        contactForm.reset();
-      } else {
-        showStatusMessage('Error!. 😢', 'error');
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      showStatusMessage('Error. 😢', 'error');
-    });
-  });
-
   // --- Lógica de la aplicación "About Me" ---
   const aboutMeBtn = document.getElementById('aboutMeBtn');
   const aboutMeModal = document.getElementById('aboutMeModal');
@@ -655,4 +623,38 @@ if (elusiveApp) {
       cameraModal.style.display = 'none';
     }
   });
+});
+
+
+ function showStatusMessage(message, type) {
+  statusMessage.textContent = message;
+  statusMessage.className = `alert-message show ${type}`;
+  setTimeout(() => {
+    statusMessage.classList.remove('show');
+    statusMessage.classList.add('hide');
+  }, 3000);
+}
+
+contactForm.addEventListener('submit', async (e) => {
+  e.preventDefault(); // Evita recargar la página
+
+  const formData = new FormData(contactForm);
+
+  try {
+    const response = await fetch(contactForm.action, {
+      method: contactForm.method,
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      showStatusMessage('Successfully ✅', 'success');
+      contactForm.reset();
+    } else {
+      showStatusMessage('Error ❌', 'error');
+    }
+  } catch (error) {
+    console.error('Network error:', error);
+    showStatusMessage('Network error ❌', 'error');
+  }
 });
