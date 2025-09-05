@@ -1029,3 +1029,15 @@ body {
   text-align: center;
 }
 
+/* Permitir scroll vertical en pantallas pequeñas (móviles) */
+@media (max-width: 767px) {
+    body {
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 991px) {
+    body {
+        overflow-y: auto;
+    }
+}
