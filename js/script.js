@@ -22,8 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
     { title: 'Something Just Like This', artist: 'Coldplay', src: 'assets/sound/audio.mp3', cover: 'assets/img/coldplay.png' },
     { title: 'Unstoppable', artist: 'Sia', src: 'assets/sound/audio2.mp3', cover: 'assets/img/sia.jpeg' },
     { title: 'The Sound Of Silence', artist: 'Disturbed', src: 'assets/sound/audio3.mp3', cover: 'assets/img/disturbed.jpg' },
-    { title: 'Barbie Girl', artist: 'Aqua', src: 'assets/sound/audio4.mp3', cover: 'assets/img/agua.png' },
-    { title: 'Red Hot Chili Peppers', artist: 'Scar Tissue', src: 'assets/sound/audio5.mp3', cover: 'assets/img/red.jpg' }
+    { title: 'Viva la vida', artist: 'Coldplay', src: 'assets/sound/audio4.mp3', cover: 'assets/img/viva.jpeg' },
+    { title: 'Red Hot Chili Peppers', artist: 'Scar Tissue', src: 'assets/sound/audio5.mp3', cover: 'assets/img/red.jpg' },
+    { title: 'Cheap Thrills', artist: 'Sia', src: 'assets/sound/audio6.mp3', cover: 'assets/img/sia1.jpeg' }
   ];
   let currentTrackIndex = 0;
 
@@ -322,22 +323,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeStudyModalBtn = studyModal.querySelector('.close-modal-btn');
 
   studyAppBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    hideAllModals();
-    studyModal.style.display = 'flex';
-    studyModal.classList.add('visible');
+      e.preventDefault();
+      hideAllModals();
+      studyModal.style.display = 'flex';
+      studyModal.classList.add('visible');
   });
 
   closeStudyModalBtn.addEventListener('click', () => {
-    studyModal.classList.remove('visible');
-    studyModal.style.display = 'none';
+      studyModal.classList.remove('visible');
+      studyModal.style.display = 'none';
   });
 
   studyModal.addEventListener('click', (e) => {
-    if (e.target === studyModal) {
-      studyModal.classList.remove('visible');
-      studyModal.style.display = 'none';
-    }
+      if (e.target === studyModal) {
+          studyModal.classList.remove('visible');
+          studyModal.style.display = 'none';
+      }
   });
 
   // --- Lógica para los sub-modales de "My study" ---
@@ -350,6 +351,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeMdnModalBtn = mdnModal.querySelector('.close-modal-btn');
   const closeFreeCodeCampModalBtn = freeCodeCampModal.querySelector('.close-modal-btn');
   const closeW3schoolsModalBtn = w3schoolsModal.querySelector('.close-modal-btn');
+  const dataScientistAppBtn = document.getElementById('dataScientistAppBtn');
+  const dataScientistModal = document.getElementById('dataScientistModal');
+  const closeDataScientistModalBtn = dataScientistModal.querySelector('.close-modal-btn');
 
   function openSubModal(modal) {
     hideAllModals();
@@ -371,6 +375,11 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     openSubModal(w3schoolsModal);
   });
+  
+  dataScientistAppBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openSubModal(dataScientistModal);
+  });
 
   closeMdnModalBtn.addEventListener('click', () => {
     mdnModal.classList.remove('visible');
@@ -391,6 +400,13 @@ document.addEventListener('DOMContentLoaded', () => {
     w3schoolsModal.style.display = 'none';
     studyModal.style.display = 'flex';
     studyModal.classList.add('visible');
+  });
+
+  closeDataScientistModalBtn.addEventListener('click', () => {
+      dataScientistModal.classList.remove('visible');
+      dataScientistModal.style.display = 'none';
+      studyModal.style.display = 'flex';
+      studyModal.classList.add('visible');
   });
 
   // --- Lógica de la aplicación "Notifications" ---
@@ -496,46 +512,147 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- Lógica de la aplicación 'Elusive' ---
-  const elusiveApp = document.getElementById('elusiveApp');
+const elusiveApp = document.getElementById('elusiveApp');
 
-  if (elusiveApp) {
-    const appText = elusiveApp.querySelector('p');
+if (elusiveApp) {
+  const appText = elusiveApp.querySelector('p');
+  const colors = ['#e74c3c', '#3498db', '#f1c40f', '#9b59b6', '#1abc9c'];
 
-    const funnyNames = [
-      "Made in Temu",
-      "Shipping in 99 days",
-      "Manual in Chinese",
-    ];
+  elusiveApp.addEventListener('click', (event) => {
+    event.preventDefault();
+    elusiveApp.classList.add('shake-animation');
 
-    elusiveApp.addEventListener('click', (event) => {
-      event.preventDefault();
-      elusiveApp.classList.add('shake-animation');
+    const funnyNames = ["Temu制造", "99天内发货", "中文手册"];
+    appText.textContent = funnyNames[Math.floor(Math.random() * funnyNames.length)];
 
-      const randomIndex = Math.floor(Math.random() * funnyNames.length);
-      appText.textContent = funnyNames[randomIndex];
+    // Crear virus inicial
+    for (let i = 0; i < 10; i++) createVirus(0);
 
-      setTimeout(() => {
-        elusiveApp.classList.remove('shake-animation');
-      }, 1000);
-    });
+    setTimeout(() => elusiveApp.classList.remove('shake-animation'), 500);
+  });
+
+  function createVirus(depth) {
+    const virus = document.createElement('div');
+    virus.classList.add('virus');
+    virus.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    virus.textContent = '💀';
+
+    let size = 20 + Math.random() * 40;
+    virus.style.width = size + 'px';
+    virus.style.height = size + 'px';
+    virus.style.fontSize = (size/2) + 'px';
+
+    virus.style.left = Math.random() * window.innerWidth + 'px';
+    virus.style.top = Math.random() * window.innerHeight + 'px';
+
+    document.body.appendChild(virus);
+
+    // Movimiento aleatorio
+    let dx = (Math.random() - 0.5) * 4;
+    let dy = (Math.random() - 0.5) * 4;
+
+    const move = setInterval(() => {
+      let x = parseFloat(virus.style.left);
+      let y = parseFloat(virus.style.top);
+
+      x += dx; y += dy;
+      if (x < 0 || x > window.innerWidth - size) dx = -dx;
+      if (y < 0 || y > window.innerHeight - size) dy = -dy;
+
+      virus.style.left = x + 'px';
+      virus.style.top = y + 'px';
+    }, 20);
+
+    // Reproducción rápida solo 2 niveles para que dure segundos
+    if (depth < 2) {
+      const reproduce = setInterval(() => {
+        if (Math.random() < 0.3) createVirus(depth + 1);
+      }, 400);
+
+      setTimeout(() => clearInterval(reproduce), 2000); // reproducen solo 2 segundos
+    }
+
+    // Desaparecen rápido
+    setTimeout(() => { clearInterval(move); virus.remove(); }, 2500 + Math.random() * 500);
   }
-});
+}
+  
+  // --- Lógica para el modal de Entretenimiento (Movido aquí) ---
+  const entertainmentAppBtn = document.getElementById('entertainmentAppBtn');
+  const entertainmentModal = document.getElementById('entertainmentModal');
+  const closeEntertainmentModalBtn = entertainmentModal.querySelector('.close-modal-btn');
 
+  entertainmentAppBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    hideAllModals();
+    entertainmentModal.style.display = 'flex';
+    entertainmentModal.classList.add('visible');
+  });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const bocetoElements = [
-        document.querySelector('.nav-bar'),
-        document.querySelector('.header'),
-        document.querySelector('.content-row'),
-        document.querySelector('.footer')
-    ];
+  closeEntertainmentModalBtn.addEventListener('click', () => {
+    entertainmentModal.classList.remove('visible');
+    entertainmentModal.style.display = 'none';
+  });
 
-    let delay = 2000; // 2-second initial delay
+  entertainmentModal.addEventListener('click', (e) => {
+    if (e.target === entertainmentModal) {
+      entertainmentModal.classList.remove('visible');
+      entertainmentModal.style.display = 'none';
+    }
+  });
 
-    bocetoElements.forEach((element) => {
-        setTimeout(() => {
-            element.classList.add('draw-animation');
-        }, delay);
-        delay += 500; // Increment delay for a sequenced effect
-    });
+  // --- Lógica de la aplicación de la Cámara (Movido aquí) ---
+  const cameraAppBtn = document.getElementById('cameraAppBtn');
+  const cameraModal = document.getElementById('cameraModal');
+  const videoElement = document.getElementById('videoElement');
+  const closeCameraModalBtn = cameraModal.querySelector('.close-modal-btn');
+  let cameraStream = null;
+
+  async function startCamera() {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      videoElement.srcObject = stream;
+      videoElement.style.display = 'block';
+      cameraStream = stream;
+    } catch (err) {
+      console.error("Error al acceder a la cámara:", err);
+      // Reemplaza `alert()` con una mejor notificación en tu UI
+      // Por ahora, solo usamos un mensaje de consola para depuración.
+      console.error("No se pudo iniciar la cámara. Asegúrate de dar los permisos necesarios.");
+    }
+  }
+
+  function stopCamera() {
+    if (cameraStream) {
+      cameraStream.getTracks().forEach(track => track.stop());
+      videoElement.srcObject = null;
+      videoElement.style.display = 'none';
+      cameraStream = null;
+    }
+  }
+
+  cameraAppBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    hideAllModals();
+    cameraModal.style.display = 'flex';
+    cameraModal.classList.add('visible');
+    startCamera();
+  });
+
+  // El botón de cerrar la cámara ahora vuelve al modal de Entretenimiento
+  closeCameraModalBtn.addEventListener('click', () => {
+    stopCamera();
+    cameraModal.classList.remove('visible');
+    cameraModal.style.display = 'none';
+    entertainmentModal.style.display = 'flex';
+    entertainmentModal.classList.add('visible');
+  });
+
+  cameraModal.addEventListener('click', (e) => {
+    if (e.target === cameraModal) {
+      stopCamera();
+      cameraModal.classList.remove('visible');
+      cameraModal.style.display = 'none';
+    }
+  });
 });
